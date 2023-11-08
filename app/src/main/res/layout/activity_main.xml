@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="Hello"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:layout_width="399dp"
+        android:layout_height="373dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:baselineAligned="false"
+            android:clipChildren="false"
+            android:foregroundGravity="center">
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:backgroundTintMode="screen"
+                android:elegantTextHeight="false"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:onClick="ClearAll"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="AC"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:iconTintMode="screen"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:onClick="Delete"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="del"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="÷"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="7"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="8"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="9"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:includeFontPadding="false"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="*"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="4"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="5"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="6"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="3"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+            <Button
+                android:id="@+id/calculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:minWidth="102dp"
+                android:minHeight="75dp"
+                android:onClick="Calculate"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:text="="
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:iconPadding="0dp"
+                app:rippleColor="#9A9999" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
