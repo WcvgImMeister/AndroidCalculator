@@ -213,8 +213,8 @@ public class MainActivity extends AppCompatActivity {
         mClickButton14.setOnClickListener(listener);
         Button mClickButton15 = (Button)findViewById(R.id.button15);
         mClickButton15.setOnClickListener(listener);
-        Button mClickButton16 = (Button)findViewById(R.id.button16);
-        mClickButton16.setOnClickListener(listener);
+//        Button mClickButton16 = (Button)findViewById(R.id.button16);
+//        mClickButton16.setOnClickListener(listener);
         Button mClickButton17 = (Button)findViewById(R.id.button17);
         mClickButton17.setOnClickListener(listener);
         Button mClickButton18 = (Button)findViewById(R.id.button18);
