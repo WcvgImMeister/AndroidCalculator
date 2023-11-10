@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textToUpdate = findViewById(R.id.text);
-        ClearLog();
+        ClearViewText();
         SubscribeButtons();
         ParseInput();
     }
@@ -174,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         textToUpdate.append(text);
     }
 
-    private void ClearLog(){
+    private void ClearViewText(){
         textToUpdate.setText("");
     }
 
@@ -186,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void SubscribeButtons(){
-        Button mClickButton2 = (Button)findViewById(R.id.button2);
-        mClickButton2.setOnClickListener(listener);
+//        Button mClickButton2 = (Button)findViewById(R.id.button2);
+//        mClickButton2.setOnClickListener(listener);
         Button mClickButton3 = (Button)findViewById(R.id.button3);
         mClickButton3.setOnClickListener(listener);
         Button mClickButton4 = (Button)findViewById(R.id.button4);
@@ -267,10 +266,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        UpdateText(input);
+        UpdateViewText(input);
     }
 
-    private void UpdateText(String newText){
+    private void UpdateViewText(String newText){
         textToUpdate.setText(newText);
     }
 
