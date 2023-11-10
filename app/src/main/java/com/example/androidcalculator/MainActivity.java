@@ -225,8 +225,39 @@ public class MainActivity extends AppCompatActivity {
     private void WriteText(String textToWrite){
         if(textToUpdate.getText().toString().contains("=")){
             ClearAll();
+            return;
         }
-        if(Arrays.asList(operators).contains(textToWrite)){
+
+        if(Character.isDigit(textToWrite.charAt(0))){
+            input+= textToWrite;
+        }
+
+        if(textToWrite.equals(".")){
+            int lastOpIndex = 0;
+            for (int i = input.length()-1; i>-1; i--){
+                if(IsOperator(input.charAt(i))){
+                    lastOpIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = lastOpIndex; i < input.length()-1; i++){
+                if(Character.toString(input.charAt(i)).equals(".")){
+                    return;
+                }
+            }
+            if(input.length() >0) {
+                if(Character.toString(input.charAt(input.length()-1)).equals(".")){
+                    input = input.substring(0, input.length()-1) + textToWrite;
+                }else{
+                    input+=textToWrite;
+                }
+            }else{
+                input+=textToWrite;
+            }
+        }
+
+        if(IsOperator(textToWrite.charAt(0))){
             if(input.length() > 0){
                 if(Arrays.asList(operators).contains((Character.toString(input.charAt(input.length()-1))))){
                     input = input.substring(0, input.length()-1) + textToWrite;
@@ -235,9 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        else{
-            input+=textToWrite;
-        }
+
         UpdateText(input);
     }
 
