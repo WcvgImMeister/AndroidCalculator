@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         {
             char sign = input.charAt(i);
             output += sign;
-            if(Character.isDigit(sign))
+            if(Character.isDigit(sign) || Character.toString(sign).equals("."))
             {
                 numberBuffer += Character.toString(sign);
                 if(i<input.length()-1){
-                    if (!Character.isDigit(input.charAt(i + 1))) {
+                    if (!Character.isDigit(input.charAt(i + 1)) && !Character.toString(input.charAt(i + 1)).equals(".")) {
                         numbers.add(Float.parseFloat(numberBuffer));
                         numberBuffer = "";
                     }
