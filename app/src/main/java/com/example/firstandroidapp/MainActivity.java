@@ -1,12 +1,9 @@
 package com.example.firstandroidapp;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,17 +11,14 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     String[] operators = new String[]{"+","-","*","÷"};
-    List<Integer> numbers = new ArrayList<>();
+    List<Float> numbers = new ArrayList<>();
     List<String> operations = new ArrayList<>();
-
-    List<Integer> tempNumbers = new ArrayList<>();
+    List<Float> tempNumbers = new ArrayList<>();
     List<String> tempOperations = new ArrayList<>();
-    List<Integer> calculationBuffer = new ArrayList<>();
     TextView textToUpdate;
-    String input = "2*2*2*2+3+3+4*3*3+1";
-    int _count = 0;
+    String input = "";
     String numberBuffer = "";
-    int result = 0;
+    Float result;
     String output = "";
 
     @Override
@@ -36,24 +30,6 @@ public class MainActivity extends AppCompatActivity {
         ClearLog();
         SubscribeButtons();
         ParseInput();
-        Log("До: " + operations);
-        Log("До: " + numbers);
-        FirstIteration();
-        Log("После 1: " + operations);
-        Log("После 1: " + numbers);
-        SecondIteration();
-
-
-//        Handler handler = new Handler();
-//        final Runnable r = new Runnable() {
-//            public void run() {
-//                handler.postDelayed(this, 16);
-//                _count++;
-//                String newCount = String.valueOf(_count);
-//                textToUpdate.setText(newCount);
-//            }
-//        };
-//        handler.postDelayed(r, 16);
     }
 
     private void ParseInput(){
@@ -68,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
                 numberBuffer += Character.toString(sign);
                 if(i<input.length()-1){
                     if (!Character.isDigit(input.charAt(i + 1))) {
-                        numbers.add(Integer.parseInt(numberBuffer));
+                        numbers.add(Float.parseFloat(numberBuffer));
                         numberBuffer = "";
                     }
                 }
                 else{
-                    numbers.add(Integer.parseInt(numberBuffer));
+                    numbers.add(Float.parseFloat(numberBuffer));
                     numberBuffer = "";
                 }
             }
@@ -109,7 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 case "÷":
                     int k = i;
 
-                    tempNumbers.add(numbers.get(i) * numbers.get(i+1));
+                    if (operations.get(k).equals("*")){
+                        tempNumbers.add(numbers.get(i) * numbers.get(i+1));
+                    }
+                    if(operations.get(k).equals("÷")){
+                        tempNumbers.add(numbers.get(i) / numbers.get(i+1));
+                    }
 
                     while(k < operations.size()-1 && NextOpImportant(k)){
                         int lastIndex = tempNumbers.size()-1;
@@ -131,9 +112,8 @@ public class MainActivity extends AppCompatActivity {
         tempOperations.clear();
     }
 
-
     private void SecondIteration(){
-        Integer result = numbers.get(0);
+        result = numbers.get(0);
         for (int i = 0; i < operations.size(); i++){
             switch (operations.get(i)){
                 case "+":
@@ -144,7 +124,15 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        textToUpdate.append("=" + result);
+        WriteResult();
+    }
+
+    private void WriteResult(){
+        if(result%1 == 0 ){
+            textToUpdate.append("=" + Math.round(result));
+        }else{
+            textToUpdate.append("=" + result);
+        }
     }
 
     private boolean IsOperator(Character sign){
@@ -162,12 +150,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
     private boolean CurrentOpImportant(int index){
         if(Objects.equals(operations.get(index), "*") || Objects.equals(operations.get(index), "÷")){
             return true;
         }
         return false;
     }
+
     private boolean NextOpImportant(int index){
         if(Objects.equals(operations.get(index + 1), "*") || Objects.equals(operations.get(index + 1), "÷")){
             return true;
@@ -230,7 +220,11 @@ public class MainActivity extends AppCompatActivity {
         Button mClickButton18 = (Button)findViewById(R.id.button18);
         mClickButton18.setOnClickListener(listener);
     }
+
     private void WriteText(String textToWrite){
+        if(textToUpdate.getText().toString().contains("=")){
+            ClearAll();
+        }
         if(Arrays.asList(operators).contains(textToWrite)){
             if(input.length() > 0){
                 if(Arrays.asList(operators).contains((Character.toString(input.charAt(input.length()-1))))){
@@ -250,22 +244,33 @@ public class MainActivity extends AppCompatActivity {
         textToUpdate.setText(newText);
     }
 
+    public void ClearAll(){
+        input = "";
+        textToUpdate.setText("");
+        numbers.clear();
+        operations.clear();
+    }
+
     public void ClearAll(View view) {
         input = "";
         textToUpdate.setText("");
         numbers.clear();
         operations.clear();
     }
+
     public void Delete(View view) {
-        textToUpdate.setText(textToUpdate.getText().subSequence(0, textToUpdate.getText().length()-1));
-        input = input.subSequence(0, input.length()-1).toString();
+        if(textToUpdate.getText().length()>0){
+            textToUpdate.setText(textToUpdate.getText().subSequence(0, textToUpdate.getText().length()-1));
+            input = input.subSequence(0, input.length()-1).toString();
+        }
     }
 
     public void Calculate(View view){
-        if(input == "") return;
+        String currentViewText = textToUpdate.getText().toString();
+        if(input == ""
+                || currentViewText.contains("=")
+                || IsOperator(currentViewText.charAt(currentViewText.length()-1))) return;
         ParseInput();
-//        LogAppend(numbers.toString());
-//        LogAppend(operations.toString());
         if(input.contains("*") || input.contains("÷")){
             FirstIteration();
         }
