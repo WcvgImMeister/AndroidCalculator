@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> tempOperations = new ArrayList<>();
     List<Integer> calculationBuffer = new ArrayList<>();
     TextView textToUpdate;
-    String input = "2*3+4+5+6+7+8";
+    String input = "2*2*2*2+3+3+4*3*3+1";
     int _count = 0;
     String numberBuffer = "";
     int result = 0;
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         FirstIteration();
         Log("После 1: " + operations);
         Log("После 1: " + numbers);
+        SecondIteration();
 
 
 //        Handler handler = new Handler();
@@ -86,74 +87,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void FirstIteration(){
-
-        while(operations.contains("*") || operations.contains("÷")){
-           for (int i = 0; i<operations.size(); i++){
-                switch (operations.get(i)){
-                    case "+":
-                    case "-":
-                        if(i==0) {
-                            tempNumbers.add(numbers.get(i));
-                            tempOperations.add(operations.get(i));
-                            break;
-                        }
-                        if(i<operations.size()-1){
-                            if(!PrevOpImportant(i) && !CurrentOpImportant(i)){
-                                tempNumbers.add(numbers.get(i));
-                            }
-                            tempOperations.add(operations.get(i));
-                            break;
-                        }
-                        if(i == operations.size()-1)
-                        {
-                            tempOperations.add(operations.get(i));
-                            tempNumbers.add(numbers.get(i+1));
-                        }
+       for (int i = 0; i<operations.size(); i++){
+            switch (operations.get(i)){
+                case "+":
+                case "-":
+                    if(i==0) {
+                        tempNumbers.add(numbers.get(i));
+                        tempOperations.add(operations.get(i));
                         break;
-                    case "*":
-                    case "÷":
-                        int k = i;
-                        tempNumbers.add(numbers.get(i) * numbers.get(i+1));
-                        while(k<operations.size()-1 && NextOpImportant(i)){
-                            if (operations.get(k+1).equals("*")){
-                                tempNumbers.set(i, tempNumbers.get(i) * numbers.get(k+1));
-                            }
-                            if(operations.get(k+1).equals("÷")){
-                                tempNumbers.set(i, tempNumbers.get(i) / numbers.get(k+1));
-                            }
-                            k+=1;
+                    }
+                    if(!PrevOpImportant(i)){
+                        tempNumbers.add(numbers.get(i));
+                    }
+                    tempOperations.add(operations.get(i));
+                    if(i == operations.size()-1)
+                    {
+                        tempNumbers.add(numbers.get(i+1));
+                    }
+                    break;
+                case "*":
+                case "÷":
+                    int k = i;
+
+                    tempNumbers.add(numbers.get(i) * numbers.get(i+1));
+
+                    while(k < operations.size()-1 && NextOpImportant(k)){
+                        int lastIndex = tempNumbers.size()-1;
+                        if (operations.get(k+1).equals("*")){
+                            tempNumbers.set(lastIndex, tempNumbers.get(lastIndex) * numbers.get(k+1));
                         }
-
-                        Log(operations.toString());
-//                        if (operations.get(k).equals("*")){
-//                            numbersBuffer.set(i, numbersBuffer.get(i) * numbers.get(k));
-//                            Log(numbersBuffer.get(i).toString());
-//
-//                            if(operations.size()%2!=0){
-//                                numbersBuffer.set(i, numbersBuffer.get(i) * numbers.get(k+1));
-//                                Log(numbersBuffer.get(i).toString());
-//                            }
-//                        }
-//                        else{
-//                            numbersBuffer.set(i, numbersBuffer.get(i) / numbers.get(k));
-//                            Log(numbersBuffer.get(i).toString());
-//
-//                            if(operations.size()%2!=0){
-//                                numbersBuffer.set(i, numbersBuffer.get(i) / numbers.get(k+1));
-//                                Log(numbersBuffer.get(i).toString());
-//                            }
-//                        }
-
-                        i=k;
-                        break;
-                }
+                        if(operations.get(k+1).equals("÷")){
+                            tempNumbers.set(lastIndex, tempNumbers.get(lastIndex) / numbers.get(k+1));
+                        }
+                        k+=1;
+                    }
+                    i=k;
+                    break;
             }
-            numbers = new ArrayList<>(tempNumbers);
-            operations = new ArrayList<>(tempOperations);
-            tempNumbers.clear();
-            tempOperations.clear();
         }
+        numbers = new ArrayList<>(tempNumbers);
+        operations = new ArrayList<>(tempOperations);
+        tempNumbers.clear();
+        tempOperations.clear();
     }
+
 
     private void SecondIteration(){
         Integer result = numbers.get(0);
@@ -267,12 +244,12 @@ public class MainActivity extends AppCompatActivity {
             input+=textToWrite;
         }
         UpdateText(input);
-
     }
 
     private void UpdateText(String newText){
         textToUpdate.setText(newText);
     }
+
     public void ClearAll(View view) {
         input = "";
         textToUpdate.setText("");
