@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     String input = "";
     String numberBuffer = "";
     Float result;
-    String output = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,18 +26,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textToUpdate = findViewById(R.id.text);
-        ClearViewText();
+        ClearAll();
         SubscribeButtons();
         ParseInput();
     }
 
     private void ParseInput(){
+        ClearArrays();
         int inputLength = input.length();
 
         for (int i = 0; i < inputLength; i++)
         {
             char sign = input.charAt(i);
-            output += sign;
+
             if(Character.isDigit(sign) || Character.toString(sign).equals("."))
             {
                 numberBuffer += Character.toString(sign);
@@ -56,7 +56,11 @@ public class MainActivity extends AppCompatActivity {
             else
             {
                 if(IsOperator(sign)){
-                    operations.add(Character.toString(sign));
+                    if(i == 0 && Character.toString(input.charAt(0)).equals("-")){
+                        numberBuffer += Character.toString(sign);
+                    }else{
+                        operations.add(Character.toString(sign));
+                    }
                 }
             }
         }
@@ -108,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
         numbers = new ArrayList<>(tempNumbers);
         operations = new ArrayList<>(tempOperations);
-        tempNumbers.clear();
-        tempOperations.clear();
+        ClearBuffers();
     }
 
     private void SecondIteration(){
@@ -174,9 +177,6 @@ public class MainActivity extends AppCompatActivity {
         textToUpdate.append(text);
     }
 
-    private void ClearViewText(){
-        textToUpdate.setText("");
-    }
 
     View.OnClickListener listener = new View.OnClickListener(){
         public void onClick(View view) {
@@ -223,8 +223,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void WriteText(String textToWrite){
-        if(textToUpdate.getText().toString().contains("=")){
-            String resultBuffer = textToUpdate.getText().toString().split("=")[1];
+        if(input.contains("=")){
+            String resultBuffer = input.split("=")[1];
             ClearAll();
             input = resultBuffer;
         }
@@ -259,12 +259,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(IsOperator(textToWrite.charAt(0))){
-            if(input.length() > 0){
+            if(input.length() > 1){
                 if(Arrays.asList(operators).contains((Character.toString(input.charAt(input.length()-1))))){
                     input = input.substring(0, input.length()-1) + textToWrite;
                 }else{
                     input+=textToWrite;
                 }
+            } else if (textToWrite.equals("-")) {
+                input+=textToWrite;
             }
         }
 
@@ -275,9 +277,19 @@ public class MainActivity extends AppCompatActivity {
         textToUpdate.setText(newText);
     }
 
+    private void ClearArrays(){
+        operations.clear();
+        numbers.clear();
+    }
+
+    private void ClearBuffers(){
+        tempNumbers.clear();
+        tempOperations.clear();
+    }
+
     public void ClearAll(){
         input = "";
-        textToUpdate.setText("");
+        UpdateViewText("");
         numbers.clear();
         operations.clear();
     }
@@ -290,14 +302,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Delete(View view) {
-        if(textToUpdate.getText().length()>0){
-            textToUpdate.setText(textToUpdate.getText().subSequence(0, textToUpdate.getText().length()-1));
-            input = input.subSequence(0, input.length()-1).toString();
+        if(input.length()>0){
+            String newText = input.subSequence(0, input.length()-1).toString();
+            UpdateViewText(newText);
+            input = newText;
         }
     }
 
     public void Calculate(View view){
-        String currentViewText = textToUpdate.getText().toString();
+        String currentViewText = input;
         if(input == ""
                 || currentViewText.contains("=")
                 || IsOperator(currentViewText.charAt(currentViewText.length()-1))) return;
