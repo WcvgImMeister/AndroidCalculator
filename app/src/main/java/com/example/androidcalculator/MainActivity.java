@@ -129,10 +129,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void WriteResult(){
         if(result%1 == 0 ){
-            textToUpdate.append("=" + Math.round(result));
+            input += "=" + Math.round(result);
         }else{
-            textToUpdate.append("=" + result);
+            input += ("=" + result);
         }
+        UpdateViewText(input);
     }
 
     private boolean IsOperator(Character sign){
@@ -223,8 +224,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void WriteText(String textToWrite){
         if(textToUpdate.getText().toString().contains("=")){
+            String resultBuffer = textToUpdate.getText().toString().split("=")[1];
             ClearAll();
-            return;
+            input = resultBuffer;
         }
 
         if(Character.isDigit(textToWrite.charAt(0))){

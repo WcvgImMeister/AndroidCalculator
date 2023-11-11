@@ -13,16 +13,17 @@
         android:id="@+id/text"
         android:layout_width="367dp"
         android:layout_height="333dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
         android:text="Hello"
         android:textAlignment="textEnd"
         android:textColor="@color/white"
         android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="399dp"
         android:layout_height="373dp"
         android:background="@color/not_black"
