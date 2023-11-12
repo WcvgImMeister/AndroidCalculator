@@ -259,8 +259,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(IsOperator(textToWrite.charAt(0))){
-            if(input.length() > 1){
-                if(Arrays.asList(operators).contains((Character.toString(input.charAt(input.length()-1))))){
+            if(input.length() > 0){
+                if(IsOperator(input.charAt(input.length()-1))){
                     input = input.substring(0, input.length()-1) + textToWrite;
                 }else{
                     input+=textToWrite;
